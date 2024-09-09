@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_spectacular',
     'expense_tracker.apps.ExpenseTrackerConfig',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -105,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # JWT Settings
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': 'rest_framework.permissions.IsAuthenticated',
     'DEFAULT_AUTHENTICATION_CLASSES': 'rest_framework_simplejwt.authentication.JWTAuthentication',
 }
@@ -114,6 +116,13 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Expense Tracker API',
+    'DESCRIPTION': 'API for Expense Tracker',
+    'VERSION': '0.0.1',
+    'SERVE_INCLUDE_SCHEMA': True,
 }
 
 # Internationalization
